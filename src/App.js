@@ -49,7 +49,7 @@ class App extends React.Component{
           </SubMenu>
           <SubMenu key="sub3" title="subnav 3">
             <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
+            <Menu.Item key="10">option100</Menu.Item>
             <Menu.Item key="11">option11</Menu.Item>
             <Menu.Item key="12">option12</Menu.Item>
           </SubMenu>
