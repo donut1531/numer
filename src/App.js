@@ -33,8 +33,10 @@ class App extends React.Component{
       
       <Layout>
         <Header className="header">
+          
           <div className="logo" />
-      
+          
+          
         </Header>
       <Layout style = {{minHeight:'100vh'}}>
       <Sider width={200} className="site-layout-background">
@@ -76,12 +78,14 @@ class App extends React.Component{
             minHeight: 280,
           }}
         >
+         { /* Root of Equation  */}
+         <Route exact path = '/'component = {Bisection}/>
          <Route path = '/bisection'component = {Bisection}/>
          <Route path = '/false-position' component = {False_position} />
          <Route path = '/one-point' component = {One_point} />
          <Route path = '/newton-raphson' component = {Newton_raphson} />
          <Route path = '/secant' component = {Secant} />
-
+         { /* Linear Algebraic Equation  */}
          <Route path = '/cramer' component = {Cramer} />
          <Route path = '/guass-elimation' component = {Guass_elimation} />
          <Route path = '/lu-decompostion' component = {Lu_decomposition} />
