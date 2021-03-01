@@ -5,10 +5,16 @@ import React from 'react';
 import { Layout, Typography, Menu, Breadcrumb} from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import False_position from  './False_position'
-import False_position from  './False_position'
-import False_position from  './False_position'
-import False_position from  './False_position'
-
+import One_point  from  './One_point'
+import Newton_raphson from  './Newton_raphson'
+import Secant from  './Secant'
+import Guass_elimation from  './Guass_elimation'
+import Lu_decomposition from './Lu_decomposition'
+import Guass_jordan from  './Guass_jordan'
+import Guass_seidel from  './Guass_seidel'
+import Conjugate_gradient from  './Conjugate_gradient'
+import Jacobi from  './Jacobi'
+import Cramer from  './Cramer'
 
 const { SubMenu } = Menu;
 
@@ -41,19 +47,19 @@ class App extends React.Component{
           <SubMenu key="sub1"  title="Root of Equations">
             <Menu.Item key="1">Bisection Method <Link to = '/bisection' /></Menu.Item>
             <Menu.Item key="2">False-Position Method<Link to = '/false-position' /></Menu.Item>
-            <Menu.Item key="3">One-Point Iteration Method</Menu.Item>
-            <Menu.Item key="4">Newton-Raphson Method</Menu.Item>
-            <Menu.Item key="5">Secant Method</Menu.Item>
+            <Menu.Item key="3">One-Point Iteration Method<Link to = '/one-point' /></Menu.Item>
+            <Menu.Item key="4">Newton-Raphson Method<Link to = '/newton-raphson' /></Menu.Item>
+            <Menu.Item key="5">Secant Method<Link to = '/secant' /></Menu.Item>
             
           </SubMenu>
           <SubMenu key="sub2" title="Linear Algebraic Equations">
-            <Menu.Item key="6">Cramer's Rule</Menu.Item>
-            <Menu.Item key="7">Gauss Elimation Method</Menu.Item>
-            <Menu.Item key="8">Guass-Jordan Method</Menu.Item>
-            <Menu.Item key="9">LU Decompostion Method</Menu.Item>
-            <Menu.Item key="10">Jacobi Iteration Method</Menu.Item>
-            <Menu.Item key="11">Guass-Seidel Iteration Method</Menu.Item>
-            <Menu.Item key="12">Conjugate Gradient Method</Menu.Item>
+            <Menu.Item key="6">Cramer's Rule<Link to = '/cramer' /></Menu.Item>
+            <Menu.Item key="7">Gauss Elimation Method<Link to = '/guass-elimation' /></Menu.Item>
+            <Menu.Item key="8">Guass-Jordan Method<Link to = '/guass-jordan' /></Menu.Item>
+            <Menu.Item key="9">LU Decompostion Method<Link to = '/lu-decompostion' /></Menu.Item>
+            <Menu.Item key="10">Jacobi Iteration Method<Link to = '/jacobi-iteration' /></Menu.Item>
+            <Menu.Item key="11">Guass-Seidel Iteration Method<Link to = '/guass-seidel' /></Menu.Item>
+            <Menu.Item key="12">Conjugate Gradient Method<Link to = '/conjugate-gradient' /></Menu.Item>
             
           </SubMenu>
         </Menu>
@@ -72,6 +78,17 @@ class App extends React.Component{
         >
          <Route path = '/bisection'component = {Bisection}/>
          <Route path = '/false-position' component = {False_position} />
+         <Route path = '/one-point' component = {One_point} />
+         <Route path = '/newton-raphson' component = {Newton_raphson} />
+         <Route path = '/secant' component = {Secant} />
+
+         <Route path = '/cramer' component = {Cramer} />
+         <Route path = '/guass-elimation' component = {Guass_elimation} />
+         <Route path = '/lu-decompostion' component = {Lu_decomposition} />
+         <Route path = '/jacobi-iteration' component = {Jacobi} />
+         <Route path = '/guass-seidel' component = {Guass_seidel} />
+         <Route path = '/guass-jordan' component = {Guass_jordan} />
+         <Route path = '/conjugate-gradient' component = {Conjugate_gradient} />
         
            
         </Content>
