@@ -1,5 +1,11 @@
 import React from 'react';
+import {Input , Button} from 'antd';
 class Newton_raphson extends React.Component{
+
+    state = { Equation : null , X : null};
+
+    
+
     render(){
 
         return(
