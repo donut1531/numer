@@ -1,8 +1,10 @@
 import React from 'react';
 import {Input , Button} from 'antd';
+import {equation , fixed_fx} from './function';
 class False_position extends React.Component{
 
-    state= {Equation : null , XL : null , XR : null ,E : null};
+    state= {Equation : '' , XL : '' , XR : '' ,E : '' , X1 : null ,FXL : null , FXR : null , FX1 : null , arr : null , status : null };
+
     getEquation = (Event) =>{
         this.setState({Equation : Event.target.value})
     }
@@ -15,10 +17,82 @@ class False_position extends React.Component{
     getE = (Event) => {
         this.setState({E : Event.target.value})
     }
+    
+    
 
     cal_false = (Event) => {
+        this.setState({status : null});
+        if(this.state.Equation === '' ||  this.state.E === ''||this.state.XL === '' || this.state.XR === ''){
+           
+            this.setState( {status :<div style = {{color : 'red'}}> โปรดกรอกข้อมูลให้ครบถ้วน </div>})
+            return;
+        }
         
-    }
+        try{
+
+            let Equation = this.state.Equation;
+
+            Equation = fixed_fx(Equation);
+            equation(2,Equation); // debug
+            
+
+            let XL = parseFloat(this.state.XL);
+            let XR = parseFloat(this.state.XR);
+
+            let X1 = parseFloat(this.state.X1);
+
+            let E  = parseFloat(this.state.E);
+            let ERROR = 99999;
+
+            
+            
+            let arr = [];
+
+            let X1_OLD = 0;
+
+            let i = 1;
+
+            while(ERROR > E){
+                
+            let FXL = equation(XL,Equation);
+            let FXR = equation(XR,Equation);
+             X1 = ((XL * FXR) - (XR * FXL)) / (FXR - FXL);
+             console.log(X1);
+            let FX1 = equation(X1,Equation);
+            
+            
+            if(FX1 * FXR >= 0) {
+            
+                XR = X1;
+            }
+            else{
+               
+                XL = X1;
+            
+            }
+
+            
+            ERROR = Math.abs((X1 - X1_OLD)/X1);
+            X1_OLD = X1;
+            arr.push(<div style = {{fontSize : '25px' ,display : 'flex'}}>
+            <span style = {{width : '40%' , textAlign : 'left'}}> Iteration {i} : X is {X1} </span>
+            <span > Error : {ERROR.toFixed(15)} </span>
+
+            </div>)
+            i++;   
+            }
+
+            arr.push(<div style = {{fontSize:'40px' , fontWeight : 'bold',textAlign : 'left'}}>RESULT OF X IS {X1} </div>)
+            this.setState({arr : arr});
+        
+        
+        }
+        
+        catch(error){
+           
+            this.setState({status :  <div style = {{color : 'red'}}> ใส่ฟังก์ชั่นไม่ถูกต้อง </div>});
+        }
+        } 
     render(){
     
         return(
@@ -30,7 +104,7 @@ class False_position extends React.Component{
             </div>
             <div style = {{marginTop : '10px'}}>
                 <Input placeholder = 'ใส่สมการ'  onChange = {this.getEquation} />
-            
+                {this.state.status}
             
             </div>
             <div style = {{marginTop : '10px'}}>
@@ -43,7 +117,7 @@ class False_position extends React.Component{
             <div style = {{marginTop : '10px' ,marginLeft : '10px'}}>
                 <Button type = 'primary' onClick = {this.cal_false}> Calculate </Button>
             </div>
-    
+            {this.state.arr}
 
             </div>
         );
