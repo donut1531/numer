@@ -1,13 +1,13 @@
 import './App.css';
-import Bisection from './Bisection';
+import Bisection from './rootofequation/Bisection';
 import { Route, HashRouter,Link } from "react-router-dom";
 import React from 'react';
 import { Layout, Typography, Menu, Breadcrumb} from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import False_position from  './False_position'
-import One_point  from  './One_point'
-import Newton_raphson from  './Newton_raphson'
-import Secant from  './Secant'
+
+import False_position from  './rootofequation/False_position'
+import One_point  from  './rootofequation/One_point'
+import Newton_raphson from  './rootofequation/Newton_raphson'
+import Secant from  './rootofequation/Secant'
 import Guass_elimation from  './Guass_elimation'
 import Lu_decomposition from './Lu_decomposition'
 import Guass_jordan from  './Guass_jordan'

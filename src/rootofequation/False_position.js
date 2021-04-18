@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input , Button} from 'antd';
-import {equation , fixed_fx} from './function';
+import {equation , fixed_fx} from '../function';
 class False_position extends React.Component{
 
     state= {Equation : '' , XL : '' , XR : '' ,E : '' , X1 : null ,FXL : null , FXR : null , FX1 : null , arr : null , status : null };
