@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input , Button} from 'antd';
-import {equation , fixed_fx} from '../function';
+
 
 import {
     atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt

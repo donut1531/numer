@@ -1,12 +1,49 @@
 import React from 'react';
 import {Input , Button} from 'antd';
-import {equation , fixed_fx} from '../function';
+
 
 class Bisection extends React.Component{
     state = {
         
-    Equation : '', XL :'', XR : '' , E : '',e : null,ans : null , status : null 
+    Equation : '',
+     XL :'',
+     XR : '' ,
+      E : '',
+      e : null,
+      ans : null ,
+      status : null,
+      isModalVisible : false,
+      apiData : [],
+      hasData : false
     };
+    async getData(){
+        let tempData = null
+        await apis.getRootofequation().then(res => { tempData = res.data })
+        this.setState({ apiData: tempData })
+        this.setState({ hasData: true })
+        // console.log(tempData)
+    }
+    onClickOk = e => {
+        this.setState({ isModalVisible: false })
+    }
+    onClickInsert = e => {
+        let index = e.currentTarget.getAttribute('name').split('_')
+        index = parseInt(index[1])
+        this.setState({
+            Equation: this.state.apiData[index]["equation"],
+            XL: this.state.apiData[index]["xl"],
+            XR: this.state.apiData[index]["xr"],
+            E: this.state.apiData[index]["error"],
+            isModalVisible: false
+        })
+    }
+
+    onClickExample = e =>{
+        if(!this.state.hasData){
+            this.getData()
+        }
+        this.setState({isModalVisible:true})
+    }
 
     getEquation = (Event) =>{
         this.setState({Equation : Event.target.value})
@@ -122,6 +159,7 @@ class Bisection extends React.Component{
                  marginTop : '10px'
                  ,marginLeft : '10px'
              }}>
+                 
                  <Button type = 'primary' onClick = {this.cal_bisection}> Calculate </Button>
 
              </div>

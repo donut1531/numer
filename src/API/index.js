@@ -9,9 +9,9 @@ const get_Matrix = () => api.get('/matrix')
 const get_Matrix_Interpolation = () => api.get('/interpolation')
 const get_Matrix_Regression = () => api.get('/regression')
 const all_Api = {
-    getRootofequation,
-    getMatrix,
-    getMatrixInterpolation,
-    getMatrixRegression
+    get_Root_of_equation,
+    get_Matrix,
+    get_Matrix_Interpolation,
+    get_Matrix_Regression
 }
 export default all_Api

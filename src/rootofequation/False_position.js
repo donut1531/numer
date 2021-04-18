@@ -1,22 +1,66 @@
 import React from 'react';
 import {Input , Button} from 'antd';
-import {equation , fixed_fx} from '../function';
+
+import all_Api from '../API/index'
+import {Modal_roe} from '../components/Modal.js'
+
 class False_position extends React.Component{
 
-    state= {Equation : '' , XL : '' , XR : '' ,E : '' , X1 : null ,FXL : null , FXR : null , FX1 : null , arr : null , status : null };
-
-    getEquation = (Event) =>{
+    state= {
+         Equation : '' ,
+         XL : '' ,
+         XR : '' ,
+         E : '' ,
+         X1 : null ,
+         FXL : null ,
+         FXR : null ,
+         FX1 : null ,
+         arr : null ,
+         status : null,
+         isModalVisible : false,
+         apiData : [],
+         hasData : false}
+        
+        async getData(){
+            let tempData = null
+            await all_Api.get_Root_of_equation().then(res => {tempData = res.data})
+            this.setState({apiData:tempData})
+            this.setState({hasData:true})
+            // console.log(tempData)
+        }
+        onClickOk = e =>{
+            this.setState({isModalVisible:false})
+        }
+        onClickInsert = e =>{
+        let index = e.currentTarget.getAttribute('name').split('_')
+            index = parseInt(index[1])
+            this.setState({
+                equation: this.state.apiData[index]["equation"],
+                xl : this.state.apiData[index]["xl"],
+                xr : this.state.apiData[index]["xr"],
+                error : this.state.apiData[index]["error"],
+                isModalVisible : false
+            })
+        }
+        
+        onClickExample = e =>{
+            if(!this.state.hasData){
+                this.getData()
+            }
+            this.setState({isModalVisible:true})
+        }
+        getEquation = (Event) =>{
         this.setState({Equation : Event.target.value})
-    }
-    getXL = (Event) =>{
+        }
+        getXL = (Event) =>{
         this.setState({XL : Event.target.value})
-    }
-    getXR =(Event) => {
+        }
+        getXR =(Event) => {
         this.setState({XR : Event.target.value})
-    }
-    getE = (Event) => {
+        }
+        getE = (Event) => {
         this.setState({E : Event.target.value})
-    }
+        }
     
     
 
